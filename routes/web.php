@@ -19,9 +19,12 @@ Route::get('/', function () {
 Route::get('/register-member', function () {
     return view('register-member');
 })->name('register.member');
-Route::post('/registered-member','App\Http\Controllers\GymMemberController@registerNewGymMember')->name('register.new.member');
+Route::post('/create-member','App\Http\Controllers\GymMemberController@createNewMember')->name('create.new.member');
 Route::get('/show-members','App\Http\Controllers\GymMemberController@showMembers')->name('show.members');
 Route::get('/delete-member/{id}','App\Http\Controllers\GymMemberController@deleteMember')->name('delete.member');
+Route::get('/editing-member/{id}','App\Http\Controllers\GymMemberController@editingMember')->name('editing.member');
+Route::get('/edit-member/{id}','App\Http\Controllers\GymMemberController@editMember')->name('edit.member');
+
 
 
 

@@ -3,7 +3,7 @@
     <title>Register Member</title>
 </head>
 <body>
-    <form method="post" action="{{route('register.new.member')}}" enctype="multipart/form-data">
+    <form method="post" action="{{route('create.new.member')}}" enctype="multipart/form-data">
         @csrf
         @method('POST')
         <label>First Name:</label><br>

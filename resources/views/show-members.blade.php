@@ -36,8 +36,8 @@
             <td>{{$gmembers[$i]->birthdate}}</td>
             <td>{{$gmembers[$i]->expiredate}}</td>
             <td>
-                <button type="button" onclick="window.location='{{ route("delete.member",$gmembers[$i]->id) }}'">Delete</button></body>
-                <button>EDIT</button>
+                <button type="button" onclick="window.location='{{ route("delete.member",$gmembers[$i]->id) }}'">Delete</button>
+                <button type="button" onclick="window.location='{{ route("editing.member",$gmembers[$i]->id) }}'">Edit</button>
             </td>
         </tr>
     @endfor
