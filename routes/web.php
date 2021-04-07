@@ -28,4 +28,3 @@ Route::get('/edit-member/{id}','App\Http\Controllers\GymMemberController@editMem
 
 
 
-
