@@ -16,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/gym', function () {
-    return view('gym-member');
-});
+Route::get('/register-member', function () {
+    return view('register-member');
+})->name('register.member');
+Route::post('/registered-member','App\Http\Controllers\GymMemberController@registerNewGymMember')->name('register.new.member');
+Route::get('/show-members','App\Http\Controllers\GymMemberController@showMembers')->name('show.members');
+
+
 
