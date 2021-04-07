@@ -21,6 +21,8 @@ Route::get('/register-member', function () {
 })->name('register.member');
 Route::post('/registered-member','App\Http\Controllers\GymMemberController@registerNewGymMember')->name('register.new.member');
 Route::get('/show-members','App\Http\Controllers\GymMemberController@showMembers')->name('show.members');
+Route::get('/delete-member/{id}','App\Http\Controllers\GymMemberController@deleteMember')->name('delete.member');
+
 
 
 
