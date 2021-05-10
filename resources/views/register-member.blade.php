@@ -2,7 +2,7 @@
 <head>
     <title>Register Member</title>
 </head>
-<body>
+
     <form method="post" action="{{route('create.new.member')}}" enctype="multipart/form-data">
         @csrf
         @method('POST')

@@ -25,7 +25,7 @@ class GymMemberController extends Controller
         $gymmember->profile_picture = $path;
         $gymmember->save();
 
-        return redirect()->route('register.member');
+        return redirect()->route('show.members');
 
     }
 
