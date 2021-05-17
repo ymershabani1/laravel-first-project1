@@ -20,6 +20,7 @@ class GymMemberController extends Controller
         $gymmember = new Member();
         $gymmember->first_name = $request->first_name;
         $gymmember->last_name = $request->last_name;
+        $gymmember->email = $request->email;
         $gymmember->birthdate = $request->birthdate;
         $gymmember->expiredate = $request->expiredate;
         $gymmember->profile_picture = $path;
@@ -62,6 +63,7 @@ class GymMemberController extends Controller
         $gymmember = Member::find($id);
         $gymmember->first_name = $request->first_name;
         $gymmember->last_name = $request->last_name;
+        $gymmember->email = $request->email;
         $gymmember->birthdate = $request->birthdate;
         $gymmember->expiredate = $request->expiredate;
         $gymmember->profile_picture = $path;

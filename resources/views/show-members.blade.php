@@ -1,6 +1,9 @@
+@extends('layouts.app')
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <style>
         table {
             width:100%;
@@ -15,6 +18,7 @@
         }
     </style>
 </head>
+@section('content')
 <body>
 <h2>Gym Members</h2>
 
@@ -24,6 +28,7 @@
         <th>Id</th>
         <th>Firstname</th>
         <th>Lastname</th>
+        <th>Email</th>
         <th>Birthdate</th>
         <th>Expire Date</th>
         <th>Actions</th>
@@ -33,6 +38,7 @@
             <td>{{$gmembers[$i]->id}}</td>
             <td>{{$gmembers[$i]->first_name}}</td>
             <td>{{$gmembers[$i]->last_name}}</td>
+            <td>{{$gmembers[$i]->email}}</td>
             <td>{{$gmembers[$i]->birthdate}}</td>
             <td>{{$gmembers[$i]->expiredate}}</td>
             <td>
@@ -43,4 +49,5 @@
     @endfor
 </table>
 </body>
+@endsection
 </html>
