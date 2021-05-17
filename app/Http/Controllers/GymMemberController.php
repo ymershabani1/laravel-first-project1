@@ -3,6 +3,8 @@
 
 namespace App\Http\Controllers;
 use App\Jobs\AfterRegisteredEmailJob;
+use App\Jobs\MembershipCanceledJob;
+use App\Jobs\MembershipExpiredJob;
 use App\Jobs\ThreeDaysBeforeExpiresJob;
 use App\Jobs\TwoDaysBeforeExpiresJob;
 use Illuminate\Http\Request;
@@ -45,8 +47,10 @@ class GymMemberController extends Controller
 
         dispatch($threeDaysBeforeExpires);
 
+        $membershipExpired = (new MembershipExpiredJob($request->email))
+            ->delay(Carbon::parse($request->expire_date));
 
-
+        dispatch($membershipExpired);
 
         return redirect()->route('show.members');
 
@@ -61,7 +65,16 @@ class GymMemberController extends Controller
 
     public function deleteMember($id){
         $member = Member::find($id);
+
+        if(!$member){
+            return abort(404);
+        }
+
+        $membershipCanceled = (new MembershipCanceledJob($member->email));
+        dispatch($membershipCanceled);
+
         $member->delete();
+
         return redirect()->route('show.members');
     }
 
@@ -93,6 +106,5 @@ class GymMemberController extends Controller
 
         return redirect()->route('show.members');
     }
-
 
 }
