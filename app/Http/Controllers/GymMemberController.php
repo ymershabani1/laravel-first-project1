@@ -2,8 +2,11 @@
 
 
 namespace App\Http\Controllers;
+use App\Jobs\AfterRegisteredEmailJob;
+use App\Jobs\ThreeDaysBeforeExpiresJob;
 use Illuminate\Http\Request;
 use App\Models\Member;
+use Carbon\Carbon;
 
 
 class GymMemberController extends Controller
@@ -25,6 +28,16 @@ class GymMemberController extends Controller
         $gymmember->expiredate = $request->expiredate;
         $gymmember->profile_picture = $path;
         $gymmember->save();
+
+        $afterRegisterdEmailJob = (new AfterRegisteredEmailJob($request->email))
+            ->delay(Carbon::now()->addMinutes(2));
+
+        dispatch($afterRegisterdEmailJob);
+
+        $threeDaysBeforeExpires = (new ThreeDaysBeforeExpiresJob($request->email))
+            ->delay(Carbon::parse($request->expire_date));
+
+        dispatch($threeDaysBeforeExpires);
 
         return redirect()->route('show.members');
 
